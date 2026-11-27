@@ -66,3 +66,59 @@ if (menuToggle && gnb) {
     }, SLIDE_INTERVAL);
   }
 })();
+
+// ===== 이달의 휴진 달력 (자동 생성) =====
+(function () {
+  const wrap = document.getElementById('clinicCalendar');
+  if (!wrap) return;
+
+  // ✏️ 공휴일 목록 — 새해가 되면 다음 해 공휴일을 추가해 주세요 (YYYY-MM-DD)
+  //    설날·추석 연휴, 대체공휴일은 달력을 확인해서 넣어주세요
+  const HOLIDAYS = [
+    '2026-12-25', // 성탄절
+    '2027-01-01', // 신정
+    '2027-03-01', // 삼일절
+    '2027-05-05', // 어린이날
+    '2027-06-06', // 현충일
+    '2027-08-15', // 광복절
+    '2027-10-03', // 개천절
+    '2027-10-09', // 한글날
+    '2027-12-25', // 성탄절
+  ];
+
+  // ✏️ 임시 휴진일 — 병원 사정으로 쉬는 날을 여기에 추가 (예: '2026-12-31')
+  const EXTRA_CLOSED = [
+  ];
+
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth(); // 0~11
+
+  const title = document.getElementById('noticeTitle');
+  if (title) title.textContent = (month + 1) + '월 휴진 안내';
+
+  const pad = (n) => (n < 10 ? '0' + n : '' + n);
+  const key = (d) => year + '-' + pad(month + 1) + '-' + pad(d);
+
+  const firstDay = new Date(year, month, 1).getDay(); // 0=일
+  const lastDate = new Date(year, month + 1, 0).getDate();
+
+  let html = '<table class="cal-table"><thead><tr>';
+  ['일', '월', '화', '수', '목', '금', '토'].forEach((d, i) => {
+    html += '<th class="' + (i === 0 ? 'cal-sun' : i === 6 ? 'cal-sat' : '') + '">' + d + '</th>';
+  });
+  html += '</tr></thead><tbody><tr>';
+
+  for (let i = 0; i < firstDay; i++) html += '<td></td>';
+
+  for (let d = 1; d <= lastDate; d++) {
+    const dow = (firstDay + d - 1) % 7;
+    if (dow === 0 && d !== 1) html += '</tr><tr>';
+    const isClosed = dow === 0 || HOLIDAYS.indexOf(key(d)) !== -1 || EXTRA_CLOSED.indexOf(key(d)) !== -1;
+    let cls = isClosed ? 'cal-closed' : dow === 6 ? 'cal-satday' : '';
+    if (d === today.getDate()) cls += ' cal-today';
+    html += '<td class="' + cls.trim() + '"><span>' + d + '</span></td>';
+  }
+  html += '</tr></tbody></table>';
+  wrap.innerHTML = html;
+})();

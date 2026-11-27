@@ -240,18 +240,15 @@
           </div>
           <div class="info-notice">
             <p class="section-eyebrow">이달의 진료 안내</p>
-            <!-- ✏️ 매달 수정: 월 숫자를 바꾸세요 -->
-            <h2 class="section-title">8월 휴진 안내</h2>
+            <h2 class="section-title" id="noticeTitle">이달의 휴진 안내</h2>
             <div class="notice-box">
-              <!-- ✏️ 매달 수정: images/schedule.jpg 파일을 새 캘린더 이미지로 교체하면 됩니다 (파일명은 그대로) -->
-              <img src="images/schedule.jpg" alt="이달의 진료 일정 캘린더" class="notice-calendar"
-                   onerror="this.style.display='none'; document.getElementById('calendarPlaceholder').style.display='flex';">
-              <div class="notice-placeholder" id="calendarPlaceholder">
-                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                <span>캘린더 이미지 자리<br>(images/schedule.jpg)</span>
+              <!-- 달력은 자동으로 그려집니다. 휴진일 추가는 js/main.js 맨 아래 EXTRA_CLOSED 에서 -->
+              <div class="clinic-calendar" id="clinicCalendar"></div>
+              <div class="cal-legend">
+                <span><i class="dot dot-closed"></i>휴진 (일요일·공휴일)</span>
+                <span><i class="dot dot-sat"></i>토요일 오전 진료 (10:00~13:00)</span>
               </div>
-              <!-- ✏️ 매달 수정: 휴진일 안내 문구 -->
-              <p class="notice-text">일요일·공휴일은 휴진입니다. 자세한 일정은 캘린더를 확인해 주세요.</p>
+              <p class="notice-text">월·수요일은 20시까지 야간진료합니다.</p>
             </div>
           </div>
         </div>
