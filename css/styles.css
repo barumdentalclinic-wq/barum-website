@@ -1,0 +1,1074 @@
+/* ==========================================================
+   웅상 바룸치과의원 — 공통 스타일
+   브랜드 컬러: #185FA5(진파랑) / #E6F1FB(연파랑) / #FFFFFF
+   ========================================================== */
+
+:root {
+  --blue: #185FA5;
+  --blue-dark: #0E4A85;
+  --blue-navy: #042C53;
+  --blue-light: #E6F1FB;
+  --blue-pale: #F4F9FE;
+  --kakao: #FEE500;
+  --kakao-text: #191919;
+  --text: #1C2B3A;
+  --text-sub: #5A6B7D;
+  --line: #DCE7F2;
+  --white: #FFFFFF;
+  --radius: 14px;
+  --shadow: 0 6px 24px rgba(24, 95, 165, 0.08);
+  --shadow-hover: 0 10px 32px rgba(24, 95, 165, 0.14);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- 버튼 ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 700;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(24, 95, 165, 0.3);
+}
+.btn-primary:hover { background: var(--blue-dark); }
+
+.btn-kakao {
+  background: var(--kakao);
+  color: var(--kakao-text);
+  box-shadow: 0 4px 14px rgba(254, 229, 0, 0.35);
+}
+.btn-kakao:hover { background: #F5DC00; }
+
+.btn-sm { padding: 12px 22px; font-size: 15px; }
+
+/* ---------- 헤더 ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 68px;
+}
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.logo-blue { color: var(--blue); }
+
+.gnb {
+  display: flex;
+  gap: 28px;
+  margin-left: auto;
+}
+.gnb a {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-sub);
+  transition: color 0.15s;
+}
+.gnb a:hover { color: var(--blue); }
+
+.header-call {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--blue);
+  border: 1.5px solid var(--blue);
+  border-radius: 999px;
+  padding: 8px 18px;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.header-call:hover { background: var(--blue); color: var(--white); }
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.menu-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- 히어로 ---------- */
+.hero {
+  position: relative;
+  background: linear-gradient(180deg, var(--blue-light) 0%, var(--white) 100%);
+  padding: 96px 0 104px;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.hero-slide.active { opacity: 1; }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(230, 241, 251, 0.88) 0%, rgba(255, 255, 255, 0.92) 100%);
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+.hero-badge {
+  display: inline-block;
+  background: var(--blue);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-size: clamp(34px, 5.5vw, 54px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.28;
+  margin-bottom: 20px;
+}
+.hero-sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--text-sub);
+  margin-bottom: 40px;
+}
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- 공통 섹션 ---------- */
+.section { padding: 88px 0; }
+.section-eyebrow {
+  color: var(--blue);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-size: clamp(24px, 3.5vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+}
+.section-head-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.section-head-row .section-title { margin-bottom: 40px; }
+.link-more {
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 44px;
+}
+.link-more:hover { text-decoration: underline; }
+
+/* ---------- 카드 그리드 ---------- */
+.card-grid { display: grid; gap: 20px; }
+.card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.card-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* 원장 프로필 */
+.doctor-profile {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 44px;
+  align-items: center;
+  background: var(--blue-pale);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 36px;
+  margin-bottom: 24px;
+}
+.doctor-photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 2px dashed var(--line);
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.doctor-photo span {
+  color: var(--blue);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.6;
+  padding: 8px;
+}
+.doctor-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.doctor-role {
+  color: var(--blue);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.doctor-name {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.doctor-name span {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-sub);
+  margin-left: 4px;
+}
+.doctor-credentials {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.doctor-credentials li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15.5px;
+  color: var(--text-sub);
+  line-height: 1.9;
+}
+.doctor-credentials li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+@media (max-width: 720px) {
+  .doctor-profile {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 24px;
+  }
+  .doctor-photo {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}
+
+/* 차별점 카드 */
+.strength-card {
+  background: var(--blue-pale);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+}
+.strength-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--blue);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.strength-card h3 {
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.strength-card p {
+  font-size: 15px;
+  color: var(--text-sub);
+}
+
+/* 진료 카드 */
+.services { background: var(--blue-pale); }
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px 24px;
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.service-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: var(--blue-light);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.service-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.service-card p {
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+/* ---------- 블로그 카드 ---------- */
+.blog-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--white);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.blog-thumb {
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--blue-light), #CBE2F7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 600;
+}
+.blog-body { padding: 20px 22px 24px; }
+.blog-cat {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--blue-light);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.blog-card h3 {
+  font-size: 16.5px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* ---------- 이달의 진료 안내 (컴팩트) ---------- */
+.notice-box {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  text-align: center;
+}
+.notice-calendar {
+  width: 100%;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+.notice-placeholder {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  aspect-ratio: 16 / 10;
+  border: 2px dashed var(--line);
+  border-radius: 10px;
+  background: var(--blue-pale);
+  color: var(--blue);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+.notice-text {
+  margin-top: 14px;
+  font-size: 14.5px;
+  color: var(--text-sub);
+}
+
+/* ---------- 진료시간 + 이달의 진료 안내 ---------- */
+.info { background: var(--blue-pale); }
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.hours-table th,
+.hours-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  font-size: 15.5px;
+}
+.hours-table tr:last-child th,
+.hours-table tr:last-child td { border-bottom: none; }
+.hours-table th {
+  width: 40%;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--blue-pale);
+}
+.tag-night,
+.tag-note {
+  display: inline-block;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-left: 6px;
+  vertical-align: 1px;
+}
+.tag-night { background: var(--blue); color: var(--white); }
+.tag-note { background: var(--blue-light); color: var(--blue); }
+
+.info-cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.map-frame {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  aspect-ratio: 4 / 3;
+  background: var(--blue-light);
+}
+.map-frame-wide { aspect-ratio: 21 / 9; }
+@media (max-width: 720px) {
+  .map-frame-wide { aspect-ratio: 4 / 3; }
+}
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.map-address {
+  margin-top: 18px;
+  font-size: 15.5px;
+  color: var(--text-sub);
+}
+.map-address .link-more { margin-bottom: 0; display: inline-block; margin-top: 6px; }
+
+.location-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 28px;
+}
+.location-item {
+  background: var(--blue-pale);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+}
+.location-item h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.location-item p {
+  font-size: 15px;
+  color: var(--text-sub);
+}
+.location-item a { color: var(--blue); font-weight: 700; }
+@media (max-width: 720px) {
+  .location-details { grid-template-columns: 1fr; }
+}
+
+/* ---------- 서브 페이지 공통 ---------- */
+.gnb a.active { color: var(--blue); }
+
+.page-hero {
+  background: linear-gradient(180deg, var(--blue-light) 0%, var(--white) 100%);
+  padding: 72px 0 56px;
+}
+.page-title {
+  font-size: clamp(28px, 4.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.35;
+}
+
+/* 병원 철학 */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.philosophy-text p {
+  font-size: 16px;
+  color: var(--text-sub);
+  margin-bottom: 18px;
+}
+.philosophy-points {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.point-card {
+  background: var(--blue-pale);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+}
+.point-card h3 {
+  font-size: 16.5px;
+  font-weight: 800;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+.point-card p {
+  font-size: 14.5px;
+  color: var(--text-sub);
+}
+@media (max-width: 900px) {
+  .philosophy-grid { grid-template-columns: 1fr; gap: 36px; }
+}
+
+/* 진료 특징 3가지 (번호 카드) */
+.features { padding-top: 0; }
+.feature-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  box-shadow: var(--shadow);
+}
+.feature-num {
+  display: block;
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--blue-light);
+  -webkit-text-stroke: 1.5px var(--blue);
+  letter-spacing: 0.02em;
+  margin-bottom: 14px;
+}
+.feature-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+.feature-card h3 {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+.feature-desc {
+  font-size: 14.5px;
+  color: var(--text-sub);
+}
+
+/* 정밀진단 시스템 (네이비 섹션) */
+.diagnosis {
+  background: var(--blue-navy);
+  text-align: center;
+}
+.diagnosis-eyebrow { color: #8FBFEA; }
+.diagnosis-title { color: var(--white); }
+.diagnosis-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  text-align: left;
+}
+.diagnosis-item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+}
+.diagnosis-item h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #A9D2F5;
+  margin-bottom: 10px;
+}
+.diagnosis-item p {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.8);
+}
+@media (max-width: 900px) {
+  .diagnosis-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .diagnosis-grid { grid-template-columns: 1fr; }
+}
+
+/* 선택하는 이유 체크리스트 */
+.reason-list {
+  list-style: none;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.reason-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--blue-pale);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+.reason-check {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.reason-list p {
+  font-size: 16px;
+  color: var(--text);
+}
+.reason-list strong { color: var(--blue); }
+
+/* 진료안내 페이지 */
+.anchor-chips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.anchor-chips a {
+  background: var(--white);
+  border: 1.5px solid var(--blue);
+  color: var(--blue);
+  font-size: 14.5px;
+  font-weight: 700;
+  padding: 9px 20px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s;
+}
+.anchor-chips a:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.treatment { scroll-margin-top: 80px; }
+.treatment-alt { background: var(--blue-pale); }
+.treatment-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.treatment-text p {
+  font-size: 16px;
+  color: var(--text-sub);
+  margin-bottom: 18px;
+}
+.treatment-side {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+.treatment-alt .treatment-side { background: var(--white); }
+.treatment .treatment-side { background: var(--blue-pale); }
+.treatment-alt .treatment-side { background: var(--white); }
+.treatment-side h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--blue);
+  margin-bottom: 16px;
+}
+.check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.check-list li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 15px;
+  color: var(--text);
+}
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--blue);
+  font-weight: 800;
+}
+@media (max-width: 900px) {
+  .treatment-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* 오시는 길 페이지 */
+.location-page { padding-top: 8px; }
+.map-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.contact-card {
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+a.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.contact-card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+.contact-big {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--blue);
+}
+
+/* 의료진 섹션 */
+.doctor-section { background: var(--blue-pale); }
+.doctor-section .doctor-profile { background: var(--white); }
+.doctor-intro {
+  font-size: 15.5px;
+  color: var(--text-sub);
+  margin-bottom: 20px;
+}
+
+/* 상담 유도 배너 */
+.cta-band {
+  background: var(--blue);
+  color: var(--white);
+  padding: 56px 0;
+}
+.cta-band-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.cta-band h2 {
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.cta-band p {
+  font-size: 15.5px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.cta-band-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-white {
+  background: var(--white);
+  color: var(--blue);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+.btn-white:hover { background: var(--blue-light); }
+
+/* ---------- 푸터 ---------- */
+.site-footer {
+  background: var(--blue-navy);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 56px 0 0;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-bottom: 40px;
+}
+.footer-logo {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.footer-text {
+  font-size: 14.5px;
+  line-height: 1.8;
+}
+.footer-text a { color: rgba(255, 255, 255, 0.85); }
+.footer-text a:hover { color: var(--white); text-decoration: underline; }
+.footer-tel {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.footer-tel a { color: var(--white); }
+.footer-copy {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 20px;
+  padding-bottom: 24px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------- 모바일 하단 CTA 바 ---------- */
+.mobile-cta-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  background: var(--white);
+  border-top: 1px solid var(--line);
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  gap: 10px;
+}
+.mobile-cta-bar .btn { flex: 1; padding: 13px 10px; font-size: 15px; }
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 900px) {
+  .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .info-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+
+@media (max-width: 720px) {
+  .gnb {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0;
+  }
+  .gnb.open { display: flex; }
+  .gnb a { padding: 14px 24px; }
+  .header-call { display: none; }
+  .menu-toggle { display: flex; margin-left: auto; }
+
+  .hero { padding: 64px 0 72px; }
+  .section { padding: 64px 0; }
+  .card-grid-3 { grid-template-columns: 1fr; }
+  .card-grid-4 { grid-template-columns: 1fr; }
+
+  .mobile-cta-bar { display: flex; }
+  body { padding-bottom: 72px; }
+  .site-footer { padding-bottom: 8px; }
+}
+
+/* ---------- 접근성: 모션 감소 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* ==========================================================
+   비급여 진료비용 안내 (pay.html)
+   ========================================================== */
+.pay-wrap { max-width: 860px; }
+
+.pay-intro {
+  color: var(--text-sub);
+  line-height: 1.8;
+  margin-bottom: 40px;
+  padding: 20px 24px;
+  background: var(--blue-pale);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.pay-group { margin-bottom: 36px; }
+
+.pay-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--blue);
+}
+
+.pay-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  font-size: 0.95rem;
+}
+
+.pay-table th {
+  background: var(--blue-light);
+  color: var(--blue-dark);
+  font-weight: 700;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.pay-table td {
+  padding: 12px 16px;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+}
+
+.pay-table td:nth-child(2) { font-weight: 700; color: var(--blue); white-space: nowrap; }
+.pay-table td:nth-child(3) { color: var(--text-sub); font-size: 0.9rem; }
+.pay-table th:nth-child(2) { white-space: nowrap; }
+
+.pay-table tbody tr:hover { background: var(--blue-pale); }
+
+.pay-note {
+  margin-top: 32px;
+  color: var(--text-sub);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .pay-table { font-size: 0.88rem; }
+  .pay-table th, .pay-table td { padding: 10px 10px; }
+}
+
+/* 푸터 하단 링크 */
+.footer-links { margin-bottom: 8px; }
+.footer-links a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+.footer-links a:hover { color: #fff; text-decoration: underline; }
+
+/* 개인정보 처리방침 (privacy.html) */
+.privacy-wrap { max-width: 760px; }
+.privacy-wrap h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue-dark);
+  margin: 32px 0 10px;
+}
+.privacy-wrap p, .privacy-wrap li {
+  color: var(--text-sub);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+.privacy-wrap ul { padding-left: 20px; margin: 8px 0; }
+.privacy-date { margin-top: 36px; font-size: 0.88rem; }
+
+/* 히어로 보조 버튼 (진료안내 보기) */
+.btn-outline {
+  background: var(--white);
+  color: var(--blue);
+  border: 2px solid var(--blue);
+}
+.btn-outline:hover { background: var(--blue-light); }
